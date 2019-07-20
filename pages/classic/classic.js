@@ -1,35 +1,36 @@
 // pages/classic/classic.js
-import {HTTP} from '../../utils/http.js'
-let http = new HTTP()
+import {ClassicModel} from '../../models/classsic'
+import {LikeModel} from '../../models/like'
+let classsicModel = new ClassicModel()
+let likemodel = new LikeModel()
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    classic: null,
     test: 1
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-     
-    http.request({
-      url: 'classic/latestqq',
-      success: (res) => {
-        console.log(res)
-      }
-    })
-    // wx.request({
-    //   url: "http://bl.7yue.pro/v1/classic/latest",
-    //   header: {
-    //     appkey: "RdshydjBvcYZhMZC"
-    //   },
-    //   success: (res) =>  {
-    //     console.log(res);
-    //     console.log(this.data.test, this.test);
-    //   }
-    // });
+     classsicModel.getLatest(res => {
+       console.log(res)
+      this.setData({
+        classic: res
+      })
+      // console.log(this.data.classic)
+     })
+  },
+  onLike(event){
+    // console.log(event)
+    let behavior = event.detail.behavior
+    console.log(behavior)
+
+    likemodel.like(behavior,this.data.classic.id,this.data.classic.type)
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

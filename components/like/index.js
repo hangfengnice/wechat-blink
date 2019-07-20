@@ -23,6 +23,7 @@ Component({
   /**
    * 组件的方法列表
    */
+  
   methods: {
     onLike(event){
       let like = this.properties.like
@@ -34,6 +35,11 @@ Component({
         count: count,
         like: !like
       })
+      // 自定义事件
+      // console.log(this.properties.like)
+      let behavior = this.properties.like ? 'like' : 'cancel'
+      this.triggerEvent('like',{behavior})
     }
+    
   }
 })
