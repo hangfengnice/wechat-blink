@@ -2,7 +2,7 @@
 import {ClassicModel} from '../../models/classsic'
 import {LikeModel} from '../../models/like'
 let classsicModel = new ClassicModel()
-let likemodel = new LikeModel()
+let likeModel = new LikeModel()
 
 Page({
   /**
@@ -11,7 +11,9 @@ Page({
   data: {
     classic: null,
     latest: true,
-    first: false
+    first: false,
+    likeCount: 0,
+    likeStatus: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,7 +23,9 @@ Page({
      classsicModel.getLatest(res => {
        console.log(res)
       this.setData({
-        classic: res
+        classic: res,
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
       })
       // latestClassic currentClassic
 
@@ -34,7 +38,7 @@ Page({
     let behavior = event.detail.behavior
     console.log(behavior)
 
-    likemodel.like(behavior,this.data.classic.id,this.data.classic.type)
+    likeModel.like(behavior,this.data.classic.id,this.data.classic.type)
 
   },
   // 前往下一期 新一些的一期
@@ -49,7 +53,8 @@ Page({
   _updateClassic(nextOrPrevious){
     let index = this.data.classic.index
     classsicModel.getClassic(index, nextOrPrevious, res => {
-      // console.log(res)
+      console.log(res)
+      this._getLikeStatus(res.id, res.type)
       this.setData({
         classic: res,
         latest: classsicModel.isLatest(res.index),
@@ -57,6 +62,15 @@ Page({
       })
     })
   },
+
+  _getLikeStatus(artID, category){
+    likeModel.getClassicLikeStatus(artID, category, res => {
+      this.setData({
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
+      })
+    })
+    },
   
   /**
    * 生命周期函数--监听页面初次渲染完成

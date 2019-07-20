@@ -7,31 +7,32 @@ class ClassicModel extends HTTP {
       success: res => {
         sCallback(res)
         this._setLatestIndex(res.index)
+        // 缓存
+        let key = this._getKey(res.index)
+        wx.setStorageSync(key, res)
       }
     });
   }
   
   getClassic(index, nextOrPrevious, sCallback){
-    this.request({
-      url: 'classic/' + index + '/' + nextOrPrevious,
-      success: res => sCallback(res)
-    })
+    // 缓存中寻找 or API 获取到新的就重新写入
+    // key 确定 key
+    let key = nextOrPrevious == 'next' ? this._getKey(index +1) : this._getKey(index - 1)
+
+    let classic = wx.getStorageSync(key)
+    // 缓存中没有 向服务器发送请求
+    if(!classic){
+      this.request({
+        url: `classic/${index}/${nextOrPrevious}`,
+        success: res => {
+          wx.setStorageSync(this._getKey(res.index), res)
+          sCallback(res)
+        }
+      })
+    }else{
+      sCallback(classic)
+    }
   }
-
-  // // 获取上一期
-  // getPrevious(index, sCallback){
-  //   this.request({
-  //     url: 'classic/' + index + '/previous',
-  //     success: res => sCallback(res)
-  //   })
-  // }
-
-  // getNext(){
-  //   this.request({
-  //     url: 'classic/' + index + '/next',
-  //     success: res => sCallback(res)
-  //   })
-  // }
 
   isFirst(index){
     return index == 1 ? true : false
@@ -49,6 +50,11 @@ class ClassicModel extends HTTP {
   _getLatestIndex(){
    let index =  wx.getStorageSync('latest')
    return index
+  }
+
+  _getKey(index){
+    let key = 'classic-' + index
+    return key
   }
 }
 

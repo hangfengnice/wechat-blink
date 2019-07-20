@@ -8,5 +8,6 @@
     "navigationBarTitleText": "hangfeng",
     "navigationBarTextStyle": "black"
   },
+  "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
 }
