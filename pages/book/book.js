@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: { 
-    books: []
+    books: [],
+    searching: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -18,13 +19,23 @@ Page({
     // Promise 对象
    bookModel.getHotList()
    .then(res => {
-    console.log(res)
+    // console.log(res)
     this.setData({
       books: res
     })
-
    })
+  },
 
+  onSearching(event){
+    this.setData({
+      searching: true
+    })
+  },
+
+  onCancel(event){
+    this.setData({
+      searching: false
+    })
   },
 
   /**
