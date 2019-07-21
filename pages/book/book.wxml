@@ -1,2 +1,17 @@
 <!--pages/book/book.wxml-->
-<text>pages/book/book.wxml</text>
+<!-- 列表渲染 -->
+<!-- <block wx:for="{{books}}" wx:key="index">
+  <v-book book="{{item}}" />
+</block> -->
+
+<view class="container">
+  <view class="header">
+    <view class="box">
+      <image src='/images/icon/search.png'></image>
+      <text></text>
+    </view>
+  </view>
+  <view class="sub-container">
+    <image class="head-img" src='/images/book/quality.png'></image>
+  </view>
+</view>
