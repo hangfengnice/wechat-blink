@@ -1,18 +1,36 @@
 // pages/book/book.js
-Page({
+import {
+  BookModel
+} from '../../models/book'
 
+const bookModel = new BookModel()
+Page({
   /**
    * 页面的初始数据
    */
-  data: {
+  data: { 
 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // Promise 对象
+   const hotList =  bookModel.getHotList()
+   hotList.then(res => console.log(res))
 
+    // const promise = new Promise((resolve, reject) => {
+    //   // pending fulfilled rejected
+    //   // 进行中  已成功  已失败         
+    //   wx.getSystemInfo({
+    //     success: res => resolve(res),
+    //     fail: error => reject(error)
+    //   })
+    // })
+
+    // promise.then(
+    // res => console.log(res),
+    // error => console.log(error))
   },
 
   /**
