@@ -1,8 +1,5 @@
 <!--pages/book/book.wxml-->
 <!-- 列表渲染 -->
-<!-- <block wx:for="{{books}}" wx:key="index">
-  <v-book book="{{item}}" />
-</block> -->
 
 <view class="container">
   <view class="header">
@@ -13,5 +10,10 @@
   </view>
   <view class="sub-container">
     <image class="head-img" src='/images/book/quality.png'></image>
+    <view class="books-container">
+      <block wx:for="{{books}}" wx:key="id">
+        <v-book book="{{item}}" />
+      </block>
+    </view>
   </view>
 </view>

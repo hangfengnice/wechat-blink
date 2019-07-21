@@ -2,7 +2,8 @@
   "pages": [
     "pages/classic/classic",
     "pages/book/book",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/book-detail/book-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,7 +11,9 @@
     "navigationBarTitleText": "hangfeng",
     "navigationBarTextStyle": "black"
   },
-  "requiredBackgroundModes": ["audio"],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "tabBar": {
     "selectedColor": "#000",
     "backgroundColor": "#fff",

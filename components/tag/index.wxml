@@ -1,0 +1,8 @@
+<!--components/tag/index.wxml-->
+<view class="container my-class">
+  <slot name='before'></slot>
+  <text>{{text}}</text>
+  <!-- 插槽 -->
+  <slot name="after"></slot>
+</view>
+ 
