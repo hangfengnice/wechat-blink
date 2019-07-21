@@ -1,5 +1,5 @@
 <!--components/tag/index.wxml-->
-<view class="container my-class">
+<view bind:tap="onTap" class="container my-class">
   <slot name='before'></slot>
   <text>{{text}}</text>
   <!-- 插槽 -->
