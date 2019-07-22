@@ -18,5 +18,5 @@
   </view>
 </view>
 
-<v-search bind:cancel='onCancel' wx:else></v-search>
+<v-search more="{{more}}" bind:cancel='onCancel' wx:else></v-search>
  
