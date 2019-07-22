@@ -42,6 +42,14 @@ class ClassicModel extends HTTP {
     let latestIndex = this._getLatestIndex()
     return index == latestIndex ? true : false
   }
+
+  getMyFavor(success){
+    const params = {
+      url: 'classic/favor',
+      success: success
+    }
+    this.request(params)
+  }
    // 把当前期刊 值 存到 Storage
   _setLatestIndex(index){
     wx.setStorageSync('latest', index)

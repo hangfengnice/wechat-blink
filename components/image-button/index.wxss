@@ -1,6 +1,9 @@
 /* components/image-button/index.wxss */
 
 .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 !important;
   border: none !important;
 }

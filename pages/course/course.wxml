@@ -1,0 +1,3 @@
+<!--pages/course/course.wxml-->
+
+<image class="img" src="/images/my/course.png"></image>
