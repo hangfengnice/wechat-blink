@@ -32,6 +32,20 @@ const paginationBev = Behavior({
       return true
     },
 
+    isLocked(){
+      return this.data.loading ? true : false
+    },
+    locked(){
+      this.setData({
+        loading : true
+      })
+    },
+    unLocked(){
+      this.setData({
+        loading : false
+      })
+    },
+
     initialize(){
       this.setData({
         dataArray: [],
